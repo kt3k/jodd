@@ -418,6 +418,22 @@ task jacocoReport() {
 	}
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:0.6.0'
+    }
+}
+
+apply plugin: 'coveralls'
+
+coveralls.jacocoReportPath = 'build/reports/coverage/jodd-coverage.xml'
+coveralls.sourceDirs = ['jodd-core/src/main/java']
+
+/*
 // Coveralls task should be invoked manually, since we have integration tests
 // that are executed only locally. After the release is build,
 // go to Travis Build History: https://travis-ci.org/oblac/jodd/builds
@@ -442,6 +458,7 @@ task coveralls() {
 		coverallsReporter.send(targetSrcDirs, file("build/reports/coverage/jodd-coverage.xml"))
 	}
 }
+*/
 
 dependencyReport {
 	projects = javaModules()

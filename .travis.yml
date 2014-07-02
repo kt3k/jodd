@@ -9,3 +9,6 @@ install:
 
 script:
   - TERM=dumb ./gradlew check
+
+after_success:
+  - TERM=dumb ./gradlew jacocoReport coveralls
